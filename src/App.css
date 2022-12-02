@@ -36,3 +36,69 @@
     transform: rotate(360deg);
   }
 }
+
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  font-family:Copperplate, Papyrus, fantasy;
+  background-image: url(/Colorful-triangle-geometric-abstract_2560x1920.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100%;
+}
+
+.App{
+  background-color:#7DCBFA;
+  border-style:ridge;
+  display: flex;
+  flex-direction: column;
+  width: 150%;
+  height: 100%;
+  gap: 0.7cm;
+  border-radius: 15px;
+  /* align-items: center; */
+  text-align: center;
+}
+
+input{
+  background-color: #BEE5FD;
+  position: relative;
+  bottom: 1cm;
+  padding: 5px;
+  border-radius: 15px;
+  border: none;
+  
+}
+
+button{
+  background-color: #3A7BD5;
+  position: relative;
+  bottom: 1cm;
+  padding: 5px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+  font-family:Copperplate, Papyrus, fantasy;
+}
+
+li{
+  list-style:decimal;
+  
+
+}
+
+li::before{
+
+  content: "\00BB";
+}
+
+input:focus{
+  outline: none;
+     
+}
