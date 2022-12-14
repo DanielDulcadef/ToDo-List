@@ -3,7 +3,7 @@ import './App.css';
 
 
 
-let numId = 3
+
 export default function App() {
   const [todos, setTodos] = React.useState([
     { id: 1, text: "HTML", done: false },
@@ -22,58 +22,66 @@ export default function App() {
   );
 }
 
+
+
 function TodoList({ todos, setTodos }) {
-  function handleToggleTodo (todo){
+  function handleToggleTodo(todo) {
     const updatedTodos = todos.map((clickedTodo) =>
-    clickedTodo.id === todo.id ? {...clickedTodo, done: !clickedTodo.done}:clickedTodo
+      clickedTodo.id === todo.id ? { ...clickedTodo, done: !clickedTodo.done } : clickedTodo
     );
     setTodos(updatedTodos)
-  
+
   }
-  if(!todos.length){
+  if (!todos.length) {
     return <p>¡No hay mas tareas!</p>
   }
   return (
     <ul>
       {todos.map((todo) => (
         <li
-        onDoubleClick={() => handleToggleTodo(todo)}
+        key={todo.id}
+          onDoubleClick={() => handleToggleTodo(todo)}
           style={{
             textDecoration: todo.done ? "line-through" : ""
           }}
-          key={todo.id}
+          
         >
           {todo.text}
-          <DeleteTodo todo={todo} setTodos = {setTodos} />
+          <DeleteTodo todo={todo} setTodos={setTodos} />
         </li>
       ))}
     </ul>
   );
 }
 
-function DeleteTodo({todo,setTodos}){
-  function handleDeleteTodo(){
+
+
+
+function DeleteTodo({ todo, setTodos }) {
+  function handleDeleteTodo() {
     const confirmed = window.confirm("¿Quieres borrar esta tarea?");
-    if(confirmed){
-      setTodos((prevTodos) =>{
+    if (confirmed) {
+      setTodos((prevTodos) => {
         return prevTodos.filter((t) => t.id !== todo.id);
       })
     }
   }
-  return(
+  return (
     <span onClick={handleDeleteTodo}
-    role="button"
-    style={{
-      color: "green",
-      fontWeight: "bold",
-      marginLeft: 10,
-      cursor: "pointer"
-    }}
+      role="button"
+      style={{
+        color: "green",
+        fontWeight: "bold",
+        marginLeft: 10,
+        cursor: "pointer"
+      }}
     >
       🗸
-      </span>
+    </span>
   );
 }
+
+
 
 
 function AddTodo({ setTodos }) {
@@ -81,14 +89,16 @@ function AddTodo({ setTodos }) {
 
   function handleAddTodo(event) {
     event.preventDefault();
-    numId ++;
+    
     const text = event.target.elements.addTodo.value;
-    const todo = {
-      id:numId,
-      text,
-      done: false
-    };
+   
     setTodos((prevTodos) => {
+     
+      const todo = {
+        id:  prevTodos.length+1,
+        text,
+        done: false
+      };
       return prevTodos.concat(todo);
     });
     inputRef.current.value = "";
@@ -100,4 +110,6 @@ function AddTodo({ setTodos }) {
     </form>
   );
 }
+
+
 
